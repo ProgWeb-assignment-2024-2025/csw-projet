@@ -1,31 +1,69 @@
-# Énoncé de Projet : Interface Web Ludopédagogique
+# Projet : Conception de site Web
+## Objectif du projet
+Le but de ce projet est de concevoir et développer un jeu interactif basé sur le concept de "Jeu dont vous êtes le Héros". Le joueur progresse dans une histoire en fonction de ses choix, et rencontre diverses épreuves tout au long du jeu. Ce projet vous permettra de mettre en pratique vos compétences en HTML, CSS et JavaScript.
 
-## Contexte
+## Spécifications techniques
 
-La ludopédagogie est une approche d'enseignement qui utilise le jeu pour faciliter l'apprentissage. Dans un monde numérique en constante évolution, les outils basés sur le web offrent une plateforme attrayante pour proposer des expériences ludopédagogiques.
+### Structure de l'histoire :
+L'histoire doit être divisée en plusieurs chapitres, chacun présentant un morceau de l'histoire.
 
-## **Objectif**
+À la fin de chaque chapitre, le joueur doit faire un choix parmi plusieurs options pour déterminer la suite de l'histoire.
 
-Votre mission est de concevoir et de développer une interface utilisateur web enrichie par JavaScript, centrée sur un concept de ludopédagogie de votre choix. Cela peut être un jeu, un quiz, une simulation, ou tout autre format que vous jugez pertinent pour un enseignement efficace à travers le jeu.
+_Note importante: Lorsque l’on parle de « chapitres », il ne s’agit pas de créer une page HTML par chapitre, le jeu se déroule bien principalement dans une unique page HTML._
 
-## **Points d'Attention**
+### Navigation et Interactivité :
+Les choix peuvent être réalisés via des boutons, des zones cliquables sur des images ou tout autres interactions ludiques.
+Les transitions entre les sections doivent être fluides et user-friendly.
 
-Assurez-vous de respecter les critères suivants lors du développement de votre projet :
+### Épreuves et défis :
+Intégrez au moins un mini-jeu dans votre histoire, qui peut être décliné plusieurs fois avec des variations.
 
-1. **Code Commenté** : Chaque section majeure de votre code devrait être commentée pour faciliter la compréhension.
-2. **Tests Unitaires** : Incluez des tests pour assurer que les principales fonctionnalités de votre application fonctionnent comme prévu.
-3. **Code Propre** : Le code doit être découpé en fonctions distinctes pour une meilleure lisibilité et maintenabilité.
-4. **Normes Web** : Votre HTML et CSS devraient adhérer aux normes actuelles.
-5. **Mise en Page** : Assurez-vous que la mise en page est propre et intuitive. Vous pouvez utiliser Bootstrap si vous le souhaitez, mais ce n'est pas obligatoire.
-6. **Ergonomie** : Pensez aux règles de base d'ergonomie. L'expérience utilisateur doit être fluide, intuitive et accessible.
-7. **Utilisation de Github** : Assurez-vous de faire des commits réguliers et significatifs.
+Les épreuves doivent influencer le déroulement de l'histoire en fonction de leur résultat.
 
-## **Validation du Sujet**
+### Formulaire initial :
+Avant de commencer le jeu, le joueur doit remplir un formulaire avec quelques informations de base (ex. : nom, âge, préférences, etc.).
 
-Avant de vous lancer pleinement dans le développement, votre concept devra être validé par l'enseignant en laboratoire. C'est une étape cruciale pour vous assurer que vous êtes sur la bonne voie. La validation devra être faite avant le mercredi 10 juillet 2024.
+Ces informations doivent être utilisées pour personnaliser l'expérience de jeu (ex. : intégrer le nom du joueur dans l'histoire).
 
-## **Défense du Travail**
+### Stockage de l'état du jeu :
+Utilisez localStorage pour stocker la progression du joueur afin de permettre la reprise du jeu après la fermeture du navigateur.
 
-Une version définitive de votre projet doit être sur github pour le jeudi 15 août 2024 à midi.
+### Aspect visuel :
+Utilisez CSS pour styliser votre jeu de manière cohérente et attrayante.
 
-Lors de la session en août, vous serez invités à défendre votre projet. Vous présenterez votre interface, expliquerez vos choix, démontrerez votre connaissance du code et comment vous avez respecté les points d'attention énumérés ci-dessus.
+Les attentes en matière de design ne sont pas excessivement élevées, mais un effort pour rendre le jeu agréable visuellement est attendu.
+
+### Technologies utilisées :
+HTML pour la structure du contenu.
+
+CSS pour le style et la mise en page.
+
+JavaScript pour l'interactivité et la logique du jeu.
+
+## Contraintes non techniques
+
+### Commentaires dans le code :
+Utilisez des commentaires clairs, concis et pertinents pour expliquer les parties importantes de votre code.
+
+Adoptez le format JSDoc pour documenter vos fonctions, en couvrant la description, les paramètres et les valeurs retournées.
+### Méthodologie de travail :
+Effectuez des commits réguliers pour documenter l'évolution de votre projet.
+
+Assurez-vous que chaque commit soit accompagné d'un message clair et descriptif.
+### Lisibilité du code :
+Utilisez des noms de variables et de fonctions explicites.
+
+Suivez une convention de nommage cohérente.
+
+Assurez une indentation et des espacements cohérents.
+
+### Modularité du code :
+Découpez votre code en fonctions ayant un but unique et bien défini.
+
+Placez votre code JavaScript dans un ou plusieurs fichiers séparés et évitez d'inclure du JS dans le HTML.
+
+## Validation de l'idée du projet 
+Avant de pouvoir démarrer votre projet, vous devez soumettre une proposition d'idée à votre enseignant pour validation. Cette proposition devra être soumise au format Markdown dans un fichier “readme.md” (dans le répertoire _dist_) et doit inclure
+* Un résumé de l'histoire que vous souhaitez développer.
+* Une idée du mini-jeu que vous allez intégrer, avec une explication de sa mécanique.
+* Une explication sur la manière dont vous allez utiliser le formulaire initial et le stockage de l'état du jeu.
