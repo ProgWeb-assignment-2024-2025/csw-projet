@@ -1,69 +1,101 @@
-# Projet : Conception de site Web
-## Objectif du projet
-Le but de ce projet est de concevoir et développer un jeu interactif basé sur le concept de "Jeu dont vous êtes le Héros". Le joueur progresse dans une histoire en fonction de ses choix, et rencontre diverses épreuves tout au long du jeu. Ce projet vous permettra de mettre en pratique vos compétences en HTML, CSS et JavaScript.
+# Enoncé — Projet Web Frontend : Histoire interactive (HTML, CSS, JS moderne)
 
-## Spécifications techniques
+## 🎯 Objectif du projet ##
+Le but de ce projet est de concevoir et développer une histoire interactive inspirée du concept « Histoire dont vous êtes le héros ».  
+L’utilisateur progresse dans une narration en fonction de ses choix, qui influencent la suite du récit et l’état du personnage.  
+Ce projet vous permettra de mettre en pratique vos compétences en **HTML**, **CSS** et **JavaScript moderne**, avec un accent particulier sur :
+- la **structuration claire du projet** (modules, organisation des fichiers, code lisible),
+- la **persistance de l’information** (**localStorage et sessionStorage**),
+- le respect des **bonnes pratiques de développement** (Git, commentaires JSDoc, conventions de code).
 
-### Structure de l'histoire :
-L'histoire doit être divisée en plusieurs chapitres, chacun présentant un morceau de l'histoire.
+## 🎯 Objectifs d’apprentissage ##
 
-À la fin de chaque chapitre, le joueur doit faire un choix parmi plusieurs options pour déterminer la suite de l'histoire.
+À l’issue du projet, vous serez capable de :
+- Structurer une **application web single‑page** (SPA légère) en **HTML5**, **CSS moderne** (Flexbox/Grid) et **JavaScript moderne** (ES Modules).
+- **Interagir avec le DOM** : sélection, création/suppression, mise à jour, gestion d’événements, utilisation de `<template>`.
+- Gérer un **état applicatif côté client**, avec **persistance** via `localStorage` et `sessionStorage`.
+- **Documenter** votre code avec **JSDoc** et respecter des **conventions de nommage**, d’indentation et de modularisation.
+- Travailler avec **Git** (commits réguliers et messages descriptifs).
+- D'expliquer/justifier tout votre code. 
 
-_Note importante: Lorsque l’on parle de « chapitres », il ne s’agit pas de créer une page HTML par chapitre, le jeu se déroule bien principalement dans une unique page HTML._
+---
 
-### Navigation et Interactivité :
-Les choix peuvent être réalisés via des boutons, des zones cliquables sur des images ou tout autres interactions ludiques.
-Les transitions entre les sections doivent être fluides et user-friendly.
+## 🔧 Spécifications techniques
 
-### Épreuves et défis :
-Intégrez au moins un mini-jeu dans votre histoire, qui peut être décliné plusieurs fois avec des variations.
+### Structure de l’histoire
+- L’histoire doit comporter au minimum **10 étapes** (“nœuds narratifs”), chacune proposant un ou plusieurs choix.
+- Ces choix doivent mener vers de nouvelles étapes ou vers une fin possible de l’histoire.
+- L’histoire doit proposer **au moins 3 fins** différentes.
+- ⚠️ **Une seule page HTML** principale : l’histoire est gérée dynamiquement via JavaScript (pas une page HTML par chapitre).
 
-Les épreuves doivent influencer le déroulement de l'histoire en fonction de leur résultat.
+### Navigation et interactivité
+- Les choix peuvent être proposés sous forme de **boutons cliquables**, de **zones interactives sur des images**, ou d’autres mécanismes ergonomiques.
+- Les transitions entre les étapes doivent être **fluides** et **claires** pour l’utilisateur.
 
-### Formulaire initial :
-Avant de commencer le jeu, le joueur doit remplir un formulaire avec quelques informations de base (ex. : nom, âge, préférences, etc.).
+### Formulaire initial
+- Avant de démarrer l’histoire, l’utilisateur complète un **formulaire de base** (ex. nom, âge, préférences, …).
+- **Point essentiel : le formulaire identifie le joueur par un _nom unique_** (dans le navigateur courant).
+  - Ce **nom unique** est **stocké en `sessionStorage`** : il indique *qui joue dans cet onglet*.
+- Les informations saisies doivent être **réutilisées dans l’histoire** (ex. le prénom affiché dans le récit, personnalisation de certains choix).
 
-Ces informations doivent être utilisées pour personnaliser l'expérience de jeu (ex. : intégrer le nom du joueur dans l'histoire).
+### Stockage et gestion de l’état
+- L’état de l’histoire (progrès, objets collectés, statistiques, etc.) doit être géré via une **structure de données en mémoire**.
+- Vous **devez utiliser les deux stockages** :
+  - **`sessionStorage`** : *qui joue et état de la session courante*
+    - `session:player` → **nom unique du joueur** (issu du formulaire).
+    - `session:runState` → **état courant** de la partie dans **cet onglet** (nœud, flags, inventaire, etc.).
+  - **`localStorage`** : *états complets et persistants par joueur* (pour pouvoir **reprendre plus tard**, même après fermeture du navigateur)
+    - `players:index` → liste des **noms de joueurs** connus sur ce navigateur.
+    - `player:<Nom>:state` → **état complet** de la partie pour ce joueur (checkpoint).
+- **Flux recommandé** :
+  1. Au formulaire, l’utilisateur saisit son **nom unique** → enregistrer `session:player`.
+  2. Si ce nom existe déjà en local, proposer **Reprendre** (charger `player:<Nom>:state` en `session:runState`) ou **Nouvelle partie** (réinitialiser son état).
+  3. Pendant le jeu, lire/écrire surtout **`session:runState`** ; aux moments clés (**checkpoint**), **sauvegarder en `localStorage`** dans `player:<Nom>:state`.
+- **Attendus fonctionnels** :
+  - Permettre de **reprendre la progression** après fermeture du navigateur (depuis `localStorage`).
+  - Tant que l’onglet reste ouvert, la session continue avec le joueur identifié (`sessionStorage`).
+  - Fournir un moyen de **réinitialiser la session** (effacer `session:*`) et de **réinitialiser la progression du joueur courant** (effacer ses clés `player:<Nom>:*` en local).
 
-### Stockage de l'état du jeu :
-Utilisez localStorage pour stocker la progression du joueur afin de permettre la reprise du jeu après la fermeture du navigateur.
+### Aspect visuel
+- L’interface doit être **claire** et **agréable** : un effort en **CSS moderne** (Flexbox/Grid, lisibilité, responsive simple) est attendu.
+- L’accent est mis sur la **cohérence visuelle** et la **lisibilité**, pas sur un design avancé.
 
-### Aspect visuel :
-Utilisez CSS pour styliser votre jeu de manière cohérente et attrayante.
+### Technologies
+- **HTML5** : structure sémantique claire (balises adaptées).
+- **CSS** : mise en page et styles modernes (Flexbox, Grid).
+- **JavaScript (ES Modules)** : logique, interactivité et gestion de l’état.
 
-Les attentes en matière de design ne sont pas excessivement élevées, mais un effort pour rendre le jeu agréable visuellement est attendu.
+---
 
-### Technologies utilisées :
-HTML pour la structure du contenu.
+## 📌 Contraintes non techniques
 
-CSS pour le style et la mise en page.
+### Documentation et commentaires
+- Utilisez des **commentaires clairs et utiles** dans le code.
+- Documentez vos fonctions en **JSDoc** : description, paramètres et valeur de retour.
 
-JavaScript pour l'interactivité et la logique du jeu.
+### Méthodologie de travail
+- Effectuez des **commits réguliers** dans Git pour documenter l’avancement.
+- Chaque commit doit être accompagné d’un **message clair et descriptif**.
 
-## Contraintes non techniques
+### Lisibilité et qualité du code
+- Utilisez des **noms explicites** pour vos variables et fonctions.
+- Suivez une **convention de nommage cohérente** (**camelCase** recommandé).
+- Respectez une **indentation** et des **espacements** constants.
 
-### Commentaires dans le code :
-Utilisez des commentaires clairs, concis et pertinents pour expliquer les parties importantes de votre code.
+### Modularité
+- Organisez votre JavaScript en **modules séparés** dans un dossier `/js/modules/`.
+- Évitez le code JavaScript directement dans le **HTML**.
+- Chaque fonction doit avoir un **rôle unique** et **clair**.
 
-Adoptez le format JSDoc pour documenter vos fonctions, en couvrant la description, les paramètres et les valeurs retournées.
-### Méthodologie de travail :
-Effectuez des commits réguliers pour documenter l'évolution de votre projet.
+> *Rappel pédagogique simple :* **si l’information doit survivre au navigateur** → `localStorage`. **Si elle ne sert qu’à l’onglet en cours** → `sessionStorage`.
 
-Assurez-vous que chaque commit soit accompagné d'un message clair et descriptif.
-### Lisibilité du code :
-Utilisez des noms de variables et de fonctions explicites.
+---
 
-Suivez une convention de nommage cohérente.
+## ✅ Validation de l’idée du projet ##
 
-Assurez une indentation et des espacements cohérents.
+Avant de commencer, vous devez soumettre une proposition de projet à votre enseignant pour validation. Il convient d'avertir votre enseignant de la mise à disposition de votre proposition.
 
-### Modularité du code :
-Découpez votre code en fonctions ayant un but unique et bien défini.
+Cette proposition, au format Markdown (readme.md dans le répertoire dist/), doit contenir :
 
-Placez votre code JavaScript dans un ou plusieurs fichiers séparés et évitez d'inclure du JS dans le HTML.
-
-## Validation de l'idée du projet 
-Avant de pouvoir démarrer votre projet, vous devez soumettre une proposition d'idée à votre enseignant pour validation. Cette proposition devra être soumise au format Markdown dans un fichier “readme.md” (dans le répertoire _dist_) et doit inclure
-* Un résumé de l'histoire que vous souhaitez développer.
-* Une idée du mini-jeu que vous allez intégrer, avec une explication de sa mécanique.
-* Une explication sur la manière dont vous allez utiliser le formulaire initial et le stockage de l'état du jeu.
+- Un résumé de l’histoire que vous souhaitez développer.
+- Une explication de la manière dont vous allez utiliser le formulaire initial pour personnaliser l’expérience.
